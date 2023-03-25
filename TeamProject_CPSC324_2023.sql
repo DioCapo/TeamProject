@@ -1,7 +1,7 @@
 -- Team 2 SQL Project Part 2 --
 -- Team Members --
 -- Adam Burkitt 230134987 --
--- Your Name Here --
+-- Derek Binnema 230131362 --
 -- Brandon Mariotto 230120996 --
 -- March 27, 2023 --
 
