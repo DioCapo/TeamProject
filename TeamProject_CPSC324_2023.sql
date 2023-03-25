@@ -47,6 +47,8 @@ CREATE TABLE Departure ( --needs more
 
 CREATE TABLE Pilot (	--needs more work
 	pilot_license_number VARCHAR(16) PRIMARY KEY
+	employee_number INT NOT NULL,
+	FOREIGN KEY (employee_number) REFERENCES Employee
 );
 
 INSERT INTO Flight(flight_number, origin, destination, departure_time, arrival_time) --Testing constraints; To be deleted later
