@@ -27,6 +27,7 @@ CREATE TABLE Flight (
 CREATE TABLE Plane (	--needs more work
 	model_number VARCHAR(16) PRIMARY KEY,
 	plane_manufacturer VARCHAR(15) NOT NULL
+	
 );
 
 CREATE TABLE Aircraft (
@@ -35,6 +36,16 @@ CREATE TABLE Aircraft (
 	model_number VARCHAR(16),
 	FOREIGN KEY (model_number) REFERENCES Plane
 );
+
+CREATE TABLE Plane_Instance (
+	model_number VARCHAR(16) NOT NULL,
+	serial_number VARCHAR(16) NOT NULL,
+	CONSTRAINT PK_Plane PRIMARY KEY (model_number, serial_number),
+	FOREIGN KEY (model_number) REFERENCES Plane,
+	FOREIGN KEY (serial_number) REFERENCES Aircraft	
+);
+
+
 
 CREATE TABLE Departure ( --needs more
 	flight_number INT,
