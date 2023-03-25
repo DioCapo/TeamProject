@@ -46,7 +46,7 @@ CREATE TABLE Departure ( --needs more
 );
 
 CREATE TABLE Pilot (	--needs more work
-	pilot_license_number VARCHAR(16) PRIMARY KEY
+	pilot_license_number VARCHAR(16) PRIMARY KEY,
 	employee_number INT NOT NULL,
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
