@@ -45,11 +45,48 @@ CREATE TABLE Departure ( --needs more
 	FOREIGN KEY (serial_number) REFERENCES Aircraft
 );
 
-CREATE TABLE Pilot (	--needs more work
+--Adam work starts
+CREATE TABLE Person (
+person_ID INT PRIMARY KEY,
+phone_number VARCHAR(20),
+first_name VARCHAR(50) NOT NULL,
+middle_name VARCHAR(50),
+last_name VARCHAR(50) NOT NULL,
+street_number VARCHAR(8) NOT NULL,
+street_name VARCHAR(50) NOT NULL,
+city VARCHAR(50) NOT NULL,
+province_or_state VARCHAR(50),
+country VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Employee (
+employee_number INT PRIMARY KEY,
+Salary INT NOT NULL,
+CONSTRAINT limit_employee_number CHECK(employee_number BETWEEN 1 AND 9999),
+CONSTRAINT check_salary CHECK(SALARY > 20000),
+FOREIGN KEY (employee_number) REFERENCES Person(person_ID)
+);
+
+CREATE TABLE Employee_Dependent (
+employee_number INT NOT NULL,
+dependent_name VARCHAR(100) NOT NULL,
+PRIMARY KEY (employee_number, dependent_name),
+FOREIGN KEY (employee_number) REFERENCES Employee
+);
+
+CREATE TABLE Customer (
+person_ID INT PRIMARY KEY,
+passport_number VARCHAR(16),
+FOREIGN KEY (person_ID) REFERENCES Person
+);
+
+CREATE TABLE Pilot (	
 	pilot_license_number VARCHAR(16) PRIMARY KEY,
 	employee_number INT NOT NULL,
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
+
+--Adam work ends
 
 INSERT INTO Flight(flight_number, origin, destination, departure_time, arrival_time) --Testing constraints; To be deleted later
 	VALUES(8008, 'YYR', 'SSX', '23:45', '06:55');
