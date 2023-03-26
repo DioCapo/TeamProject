@@ -9,7 +9,7 @@ USE Team2_Part2_2023
 
 DROP TABLE IF EXISTS --Delete all pre-existing tables
 	Departure, Flight, Aircraft,
-	Plane, Pilot;
+	Plane, Pilot, Plane_Instance, Person;
 
 CREATE TABLE Flight (
 	flight_number INT PRIMARY KEY,
@@ -30,6 +30,7 @@ CREATE TABLE Plane (	--needs more work
 	
 );
 
+
 CREATE TABLE Aircraft (
 	serial_number VARCHAR(16) PRIMARY KEY,
 	manufacture_date VARCHAR(40) NOT NULL,
@@ -37,15 +38,14 @@ CREATE TABLE Aircraft (
 	FOREIGN KEY (model_number) REFERENCES Plane
 );
 
+
 CREATE TABLE Plane_Instance (
-	model_number VARCHAR(16) NOT NULL,
-	serial_number VARCHAR(16) NOT NULL,
+	model_number VARCHAR(16),
+	serial_number VARCHAR(16),
 	CONSTRAINT PK_Plane PRIMARY KEY (model_number, serial_number),
 	FOREIGN KEY (model_number) REFERENCES Plane,
 	FOREIGN KEY (serial_number) REFERENCES Aircraft	
 );
-
-
 
 CREATE TABLE Departure ( --needs more
 	flight_number INT,
@@ -98,6 +98,8 @@ CREATE TABLE Pilot (
 );
 
 --Adam work ends
+INSERT INTO Plane_Instance(model_number, serial_number) --Testing constraints; To be deleted later
+	VALUES(80085, 80085);
 
 INSERT INTO Flight(flight_number, origin, destination, departure_time, arrival_time) --Testing constraints; To be deleted later
 	VALUES(8008, 'YYR', 'SSX', '23:45', '06:55');
