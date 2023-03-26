@@ -122,7 +122,7 @@ CREATE TABLE Employee_Departure(
 	departure_date VARCHAR(30),
 	PRIMARY KEY (employee_number, departure_date),
 	FOREIGN KEY (employee_number) REFERENCES Employee,
-	FOREIGN KEY departure_date) REFERENCES Departure
+	FOREIGN KEY (departure_date) REFERENCES Departure
 );
 
 CREATE TABLE Aircraft_Departure(
@@ -130,7 +130,7 @@ CREATE TABLE Aircraft_Departure(
 	departure_date VARCHAR(30),
 	PRIMARY KEY (serial_number, departure_date),
 	FOREIGN KEY (serial_number) REFERENCES Employee,
-	FOREIGN KEY departure_date) REFERENCES Departure
+	FOREIGN KEY (departure_date) REFERENCES Departure
 );
 
 CREATE TABLE Customer_Departure (
@@ -138,7 +138,7 @@ CREATE TABLE Customer_Departure (
 	departure_date VARCHAR(30),
 	PRIMARY KEY (passport_number, departure_date),
 	FOREIGN KEY (passport_number) REFERENCES Customer,
-	FOREIGN KEY departure_date) REFERENCES Departure
+	FOREIGN KEY (departure_date) REFERENCES Departure
 );
 
 
