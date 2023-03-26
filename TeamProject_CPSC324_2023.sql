@@ -117,7 +117,7 @@ CREATE TABLE Can_Fly (
 	FOREIGN KEY (model_number) REFERENCES Plane
 );
 
-CREATE TABLE Employee_Departure(
+CREATE TABLE Assigned_To(
 	employee_number INT,
 	departure_date VARCHAR(30),
 	PRIMARY KEY (employee_number, departure_date),
@@ -125,7 +125,7 @@ CREATE TABLE Employee_Departure(
 	FOREIGN KEY (departure_date) REFERENCES Departure
 );
 
-CREATE TABLE Aircraft_Departure(
+CREATE TABLE Aircraft_Booking(
 	serial_number INT,
 	departure_date VARCHAR(30),
 	PRIMARY KEY (serial_number, departure_date),
@@ -133,13 +133,14 @@ CREATE TABLE Aircraft_Departure(
 	FOREIGN KEY (departure_date) REFERENCES Departure
 );
 
-CREATE TABLE Customer_Departure (
+CREATE TABLE Ticket_Reservation (
 	passport_number VARCHAR(16),
 	departure_date VARCHAR(30),
 	PRIMARY KEY (passport_number, departure_date),
 	FOREIGN KEY (passport_number) REFERENCES Customer,
 	FOREIGN KEY (departure_date) REFERENCES Departure
 );
+
 
 
 INSERT INTO Flight(flight_number, origin, destination, departure_time, arrival_time) --Testing constraints; To be deleted later
