@@ -15,5 +15,11 @@ ticket_class VARCHAR(20) NOT NULL,
 boarding_section CHAR(1) NOT NULL,
 seat_number VARCHAR(5) NOT NULL,
 ticket_status VARCHAR(10) NOT NULL,
+customer_id INT,
+flight_number INT NOT NULL,
+serial_number VARCHAR(16) NOT NULL,
+departure_date VARCHAR(30) NOT NULL,
+FOREIGN KEY (customer_id) REFERENCES Person(person_ID),
+FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure,
 CONSTRAINT check_ticket_number CHECK(ticket_number BETWEEN 1 AND 99999999)
 );
