@@ -9,13 +9,14 @@ USE Team2_Part2_2023
 
 DROP TABLE IF EXISTS --Delete all pre-existing tables
 
+	Ticket_Reservation, Flight_Instance, Assigned_To, 
 	Departure, Flight, Plane_Instance,
 	Aircraft, Can_Fly, Plane,
 	Pilot, Customer, Employee_Dependent,
 	Employee, Person;
 
 
-CREATE TABLE Flight ( --creates Flight entity
+CREATE TABLE Flight ( --creates Flight entity a strong entity set
 	flight_number INT PRIMARY KEY,
 	origin CHAR(3) NOT NULL,
 	destination CHAR(3) NOT NULL,
@@ -31,13 +32,9 @@ CREATE TABLE Flight ( --creates Flight entity
 CREATE TABLE Plane ( --creates Plane entity
 	model_number VARCHAR(16) PRIMARY KEY,
 	plane_manufacturer VARCHAR(15) NOT NULL
-	
 );
 
-
-
-CREATE TABLE Aircraft (
-
+CREATE TABLE Aircraft ( --creates Aircraft entity an instance of Plane entity and a strong entity for departure
 	serial_number VARCHAR(16) PRIMARY KEY,
 	manufacture_date VARCHAR(30) NOT NULL,
 	age INT, --derived attribute converted to simple attribute just for sake of completion
@@ -56,38 +53,39 @@ CREATE TABLE Plane_Instance (
 
 
 --Adam work starts
+
 CREATE TABLE Person (
-person_ID INT PRIMARY KEY,
-phone_number VARCHAR(20),
-first_name VARCHAR(50) NOT NULL,
-middle_name VARCHAR(50),
-last_name VARCHAR(50) NOT NULL,
-street_number VARCHAR(8) NOT NULL,
-street_name VARCHAR(50) NOT NULL,
-city VARCHAR(50) NOT NULL,
-province_or_state VARCHAR(50),
-country VARCHAR(50) NOT NULL
+	person_ID INT PRIMARY KEY,
+	phone_number VARCHAR(20),
+	first_name VARCHAR(50) NOT NULL,
+	middle_name VARCHAR(50),
+	last_name VARCHAR(50) NOT NULL,
+	street_number VARCHAR(8) NOT NULL,
+	street_name VARCHAR(50) NOT NULL,
+	city VARCHAR(50) NOT NULL,
+	province_or_state VARCHAR(50),
+	country VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Employee (
-employee_number INT PRIMARY KEY,
-Salary INT NOT NULL,
-CONSTRAINT limit_employee_number CHECK(employee_number BETWEEN 1 AND 9999),
-CONSTRAINT check_salary CHECK(SALARY > 20000),
-FOREIGN KEY (employee_number) REFERENCES Person(person_ID)
+	employee_number INT PRIMARY KEY,
+	Salary INT NOT NULL,
+	CONSTRAINT limit_employee_number CHECK(employee_number BETWEEN 1 AND 9999),
+	CONSTRAINT check_salary CHECK(SALARY > 20000),
+	FOREIGN KEY (employee_number) REFERENCES Person(person_ID)
 );
 
 CREATE TABLE Employee_Dependent (
-employee_number INT NOT NULL,
-dependent_name VARCHAR(100) NOT NULL,
-PRIMARY KEY (employee_number, dependent_name),
-FOREIGN KEY (employee_number) REFERENCES Employee
+	employee_number INT NOT NULL,
+	dependent_name VARCHAR(100) NOT NULL,
+	PRIMARY KEY (employee_number, dependent_name),
+	FOREIGN KEY (employee_number) REFERENCES Employee
 );
 
 CREATE TABLE Customer (
-person_ID INT PRIMARY KEY,
-passport_number VARCHAR(16),
-FOREIGN KEY (person_ID) REFERENCES Person
+	person_ID INT PRIMARY KEY,
+	passport_number VARCHAR(16),
+	FOREIGN KEY (person_ID) REFERENCES Person
 );
 
 CREATE TABLE Pilot (	
@@ -98,23 +96,16 @@ CREATE TABLE Pilot (
 
 --Adam work ends
 
-
-CREATE TABLE Departure ( --creates Departure entity
-
+CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	flight_number INT,
 	serial_number VARCHAR(16),
 	departure_date VARCHAR(30),
 	employee_number INT NOT NULL,
-	
 	PRIMARY KEY (departure_date, flight_number, serial_number),
 	FOREIGN KEY (flight_number) REFERENCES Flight,
 	FOREIGN KEY (serial_number) REFERENCES Aircraft,
-
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
-
-INSERT INTO Plane_Instance(model_number, serial_number) --Testing constraints; To be deleted later
-	VALUES(80085, 80085);
 
 CREATE TABLE Can_Fly (
 	pilot_license_number VARCHAR(16),
@@ -129,13 +120,10 @@ CREATE TABLE Assigned_To(
 	departure_date VARCHAR(30),	
 	flight_number INT,
 	serial_number VARCHAR(16),	
-
 	PRIMARY KEY (employee_number, departure_date),
 	FOREIGN KEY (employee_number) REFERENCES Employee,
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
-
-
 
 CREATE TABLE Flight_Instance (
 	flight_number INT,
@@ -156,19 +144,3 @@ CREATE TABLE Ticket_Reservation (
 	FOREIGN KEY (person_id) REFERENCES Customer,
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
-
-
-
-
-
-INSERT INTO Flight(flight_number, origin, destination, departure_time, arrival_time) --Testing constraints; To be deleted later
-	VALUES(8008, 'YYR', 'SSX', '23:45', '06:55');
-
-INSERT INTO Aircraft(serial_number, manufacture_date)
-	VALUES(80085, 'March 21, 2023');
-
-INSERT INTO Departure(flight_number, serial_number, departure_date)
-	VALUES(8008, 80085, 'March 32, 1899');
-
-SELECT *
-FROM Flight;
