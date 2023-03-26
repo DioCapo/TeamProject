@@ -54,15 +54,6 @@ CREATE TABLE Plane_Instance (
 	FOREIGN KEY (serial_number) REFERENCES Aircraft	
 );
 
-CREATE TABLE Departure ( --creates Departure entity
-
-	flight_number INT,
-	serial_number VARCHAR(16),
-	departure_date VARCHAR(30),
-	PRIMARY KEY (departure_date, flight_number, serial_number),
-	FOREIGN KEY (flight_number) REFERENCES Flight,
-	FOREIGN KEY (serial_number) REFERENCES Aircraft,
-);
 
 --Adam work starts
 CREATE TABLE Person (
@@ -106,6 +97,22 @@ CREATE TABLE Pilot (
 );
 
 --Adam work ends
+
+
+CREATE TABLE Departure ( --creates Departure entity
+
+	flight_number INT,
+	serial_number VARCHAR(16),
+	departure_date VARCHAR(30),
+	employee_number INT NOT NULL,
+	
+	PRIMARY KEY (departure_date, flight_number, serial_number),
+	FOREIGN KEY (flight_number) REFERENCES Flight,
+	FOREIGN KEY (serial_number) REFERENCES Aircraft,
+
+	FOREIGN KEY (employee_number) REFERENCES Employee
+);
+
 INSERT INTO Plane_Instance(model_number, serial_number) --Testing constraints; To be deleted later
 	VALUES(80085, 80085);
 
@@ -119,27 +126,38 @@ CREATE TABLE Can_Fly (
 
 CREATE TABLE Assigned_To(
 	employee_number INT,
-	departure_date VARCHAR(30),
+	departure_date VARCHAR(30),	
+	flight_number INT,
+	serial_number VARCHAR(16),	
+
 	PRIMARY KEY (employee_number, departure_date),
 	FOREIGN KEY (employee_number) REFERENCES Employee,
-	FOREIGN KEY (departure_date) REFERENCES Departure
+	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
 
-CREATE TABLE Aircraft_Booking(
-	serial_number INT,
-	departure_date VARCHAR(30),
-	PRIMARY KEY (serial_number, departure_date),
-	FOREIGN KEY (serial_number) REFERENCES Employee,
-	FOREIGN KEY (departure_date) REFERENCES Departure
+
+
+CREATE TABLE Flight_Instance (
+	flight_number INT,
+	departure_date VARCHAR(30),	
+	serial_number VARCHAR(16),	
+	PRIMARY KEY (flight_number, departure_date),
+	FOREIGN KEY (flight_number) REFERENCES Flight,
+	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
 
 CREATE TABLE Ticket_Reservation (
 	passport_number VARCHAR(16),
-	departure_date VARCHAR(30),
+	person_id INT,
+	flight_number INT,
+	departure_date VARCHAR(30),	
+	serial_number VARCHAR(16),	
 	PRIMARY KEY (passport_number, departure_date),
-	FOREIGN KEY (passport_number) REFERENCES Customer,
-	FOREIGN KEY (departure_date) REFERENCES Departure
+	FOREIGN KEY (person_id) REFERENCES Customer,
+	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
+
+
 
 
 
