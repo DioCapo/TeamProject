@@ -7,11 +7,11 @@
 
 USE Team2_Part2_2023
 
---EXTENDED DESIGN SQL FILE
+--EXTENDED Logical Design
 
 DROP TABLE IF EXISTS --Delete all pre-existing tables
 
-	Ticket, Flight_Instance, Assigned_To, 
+	Ticket_Reservation, Flight_Instance, Assigned_To, 
 	Departure, Flight, Plane_Instance,
 	Aircraft, Can_Fly, Plane,
 	Pilot, Customer, Employee_Dependent,
@@ -37,21 +37,14 @@ CREATE TABLE Plane ( --creates Plane entity
 );
 
 CREATE TABLE Aircraft ( --creates Aircraft entity an instance of Plane entity and a strong entity for departure
-	serial_number VARCHAR(16) PRIMARY KEY,
+	serial_number VARCHAR(16) NOT NULL,
 	manufacture_date VARCHAR(30) NOT NULL,
 	age INT, --derived attribute converted to simple attribute just for sake of completion
-	model_number VARCHAR(16),
+	model_number VARCHAR(16) NOT NULL,
+	PRIMARY KEY (serial_number, model_number),
 	FOREIGN KEY (model_number) REFERENCES Plane,
 );
 
-
-CREATE TABLE Plane_Instance (
-	model_number VARCHAR(16),
-	serial_number VARCHAR(16),
-	CONSTRAINT PK_Plane PRIMARY KEY (model_number, serial_number),
-	FOREIGN KEY (model_number) REFERENCES Plane,
-	FOREIGN KEY (serial_number) REFERENCES Aircraft	
-);
 
 CREATE TABLE Person (
 	person_ID INT PRIMARY KEY,
@@ -63,7 +56,8 @@ CREATE TABLE Person (
 	street_name VARCHAR(50) NOT NULL,
 	city VARCHAR(50) NOT NULL,
 	province_or_state VARCHAR(50),
-	country VARCHAR(50) NOT NULL
+	country VARCHAR(50) NOT NULL,
+	CONSTRAINT id_length CHECK(person_ID BETWEEN 1 AND 9999)
 );
 
 CREATE TABLE Employee (
@@ -96,12 +90,11 @@ CREATE TABLE Pilot (
 CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	flight_number INT,
 	serial_number VARCHAR(16),
+	model_number VARCHAR(16),
 	departure_date VARCHAR(30),
-	employee_number INT NOT NULL,
 	PRIMARY KEY (departure_date, flight_number, serial_number),
 	FOREIGN KEY (flight_number) REFERENCES Flight,
-	FOREIGN KEY (serial_number) REFERENCES Aircraft,
-	FOREIGN KEY (employee_number) REFERENCES Employee
+	FOREIGN KEY (serial_number, model_number) REFERENCES Aircraft,
 );
 
 CREATE TABLE Can_Fly (
@@ -117,7 +110,7 @@ CREATE TABLE Assigned_To(
 	departure_date VARCHAR(30),	
 	flight_number INT,
 	serial_number VARCHAR(16),	
-	PRIMARY KEY (employee_number, departure_date),
+	PRIMARY KEY (employee_number, departure_date, flight_number, serial_number),
 	FOREIGN KEY (employee_number) REFERENCES Employee,
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
