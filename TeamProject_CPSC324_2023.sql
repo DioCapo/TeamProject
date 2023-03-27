@@ -35,20 +35,12 @@ CREATE TABLE Plane ( --creates Plane entity
 );
 
 CREATE TABLE Aircraft ( --creates Aircraft entity an instance of Plane entity and a strong entity for departure
-	serial_number VARCHAR(16) PRIMARY KEY,
+	serial_number VARCHAR(16) NOT NULL,
 	manufacture_date VARCHAR(30) NOT NULL,
 	age INT, --derived attribute converted to simple attribute just for sake of completion
-	model_number VARCHAR(16),
+	model_number VARCHAR(16) NOT NULL,
+	PRIMARY KEY (serial_number, model_number),
 	FOREIGN KEY (model_number) REFERENCES Plane,
-);
-
-
-CREATE TABLE Plane_Instance (
-	model_number VARCHAR(16),
-	serial_number VARCHAR(16),
-	CONSTRAINT PK_Plane PRIMARY KEY (model_number, serial_number),
-	FOREIGN KEY (model_number) REFERENCES Plane,
-	FOREIGN KEY (serial_number) REFERENCES Aircraft	
 );
 
 
@@ -62,7 +54,8 @@ CREATE TABLE Person (
 	street_name VARCHAR(50) NOT NULL,
 	city VARCHAR(50) NOT NULL,
 	province_or_state VARCHAR(50),
-	country VARCHAR(50) NOT NULL
+	country VARCHAR(50) NOT NULL,
+	CONSTRAINT id_length CHECK(person_ID BETWEEN 1 AND 9999)
 );
 
 CREATE TABLE Employee (
@@ -97,11 +90,9 @@ CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	serial_number VARCHAR(16),
 	model_number VARCHAR(16),
 	departure_date VARCHAR(30),
-	employee_number INT NOT NULL,
 	PRIMARY KEY (departure_date, flight_number, serial_number),
 	FOREIGN KEY (flight_number) REFERENCES Flight,
 	FOREIGN KEY (serial_number, model_number) REFERENCES Aircraft,
-	FOREIGN KEY (employee_number) REFERENCES Assigned_To
 );
 
 CREATE TABLE Can_Fly (
@@ -117,7 +108,7 @@ CREATE TABLE Assigned_To(
 	departure_date VARCHAR(30),	
 	flight_number INT,
 	serial_number VARCHAR(16),	
-	PRIMARY KEY (employee_number, departure_date),
+	PRIMARY KEY (employee_number, departure_date, flight_number, serial_number),
 	FOREIGN KEY (employee_number) REFERENCES Employee,
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
@@ -128,7 +119,7 @@ CREATE TABLE Ticket_Reservation (
 	flight_number INT,
 	departure_date VARCHAR(30),	
 	serial_number VARCHAR(16),	
-	PRIMARY KEY (passport_number, departure_date),
+	PRIMARY KEY (person_id, departure_date),
 	FOREIGN KEY (person_id) REFERENCES Customer,
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
