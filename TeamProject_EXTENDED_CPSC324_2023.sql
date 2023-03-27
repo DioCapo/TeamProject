@@ -11,7 +11,7 @@ USE Team2_Part2_2023
 
 DROP TABLE IF EXISTS --Delete all pre-existing tables
 
-	Ticket, Flight_Instance, Assigned_To, 
+	Ticket, Assigned_To, 
 	Departure, Flight,
 	Aircraft, Can_Fly, Plane,
 	Pilot, Customer, Employee_Dependent,
