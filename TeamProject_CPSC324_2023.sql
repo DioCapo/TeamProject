@@ -126,15 +126,6 @@ CREATE TABLE Assigned_To(
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
 
-CREATE TABLE Flight_Instance (
-	flight_number INT,
-	departure_date VARCHAR(30),	
-	serial_number VARCHAR(16),	
-	PRIMARY KEY (flight_number, departure_date),
-	FOREIGN KEY (flight_number) REFERENCES Flight,
-	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
-);
-
 CREATE TABLE Ticket_Reservation (
 	passport_number VARCHAR(16),
 	person_id INT,
