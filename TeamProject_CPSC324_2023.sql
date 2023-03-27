@@ -99,12 +99,13 @@ CREATE TABLE Pilot (
 CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	flight_number INT,
 	serial_number VARCHAR(16),
+	model_number VARCHAR(16),
 	departure_date VARCHAR(30),
 	employee_number INT NOT NULL,
 	PRIMARY KEY (departure_date, flight_number, serial_number),
 	FOREIGN KEY (flight_number) REFERENCES Flight,
-	FOREIGN KEY (serial_number) REFERENCES Aircraft,
-	FOREIGN KEY (employee_number) REFERENCES Employee
+	FOREIGN KEY (serial_number, model_number) REFERENCES Aircraft,
+	FOREIGN KEY (employee_number) REFERENCES Assigned_To
 );
 
 CREATE TABLE Can_Fly (
