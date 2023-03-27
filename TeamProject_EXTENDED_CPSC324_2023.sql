@@ -53,9 +53,6 @@ CREATE TABLE Plane_Instance (
 	FOREIGN KEY (serial_number) REFERENCES Aircraft	
 );
 
-
---Adam work starts
-
 CREATE TABLE Person (
 	person_ID INT PRIMARY KEY,
 	phone_number VARCHAR(20),
@@ -96,8 +93,6 @@ CREATE TABLE Pilot (
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
 
---Adam work ends
-
 CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	flight_number INT,
 	serial_number VARCHAR(16),
@@ -137,7 +132,7 @@ CREATE TABLE Ticket (
   flight_number INT NOT NULL,
   serial_number VARCHAR(16) NOT NULL,
   departure_date VARCHAR(30) NOT NULL,
-  FOREIGN KEY (customer_id) REFERENCES Person(person_ID),
+  FOREIGN KEY (customer_id) REFERENCES Customer(person_ID),
   FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure,
   CONSTRAINT check_ticket_number CHECK(ticket_number BETWEEN 1 AND 99999999)
 );
