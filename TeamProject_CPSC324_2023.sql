@@ -52,8 +52,6 @@ CREATE TABLE Plane_Instance (
 );
 
 
---Adam work starts
-
 CREATE TABLE Person (
 	person_ID INT PRIMARY KEY,
 	phone_number VARCHAR(20),
@@ -93,8 +91,6 @@ CREATE TABLE Pilot (
 	employee_number INT NOT NULL,
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
-
---Adam work ends
 
 CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	flight_number INT,
