@@ -76,9 +76,9 @@ CREATE TABLE Employee_Dependent (
 );
 
 CREATE TABLE Customer (
-	person_ID INT PRIMARY KEY,
+	customer_ID INT PRIMARY KEY,
 	passport_number VARCHAR(16),
-	FOREIGN KEY (person_ID) REFERENCES Person
+	FOREIGN KEY (customer_ID) REFERENCES Person(person_ID)
 );
 
 CREATE TABLE Pilot (	
@@ -125,7 +125,7 @@ CREATE TABLE Ticket (
   flight_number INT NOT NULL,
   serial_number VARCHAR(16) NOT NULL,
   departure_date VARCHAR(30) NOT NULL,
-  FOREIGN KEY (customer_id) REFERENCES Customer(person_ID),
+  FOREIGN KEY (customer_id) REFERENCES Customer,
   FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure,
   CONSTRAINT check_ticket_number CHECK(ticket_number BETWEEN 1 AND 99999999)
 );
