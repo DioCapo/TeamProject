@@ -46,7 +46,7 @@ CREATE TABLE Aircraft ( --creates Aircraft entity an instance of Plane entity an
 );
 
 
-CREATE TABLE Person (
+CREATE TABLE Person ( --creates person table.
 	person_ID INT PRIMARY KEY,
 	phone_number VARCHAR(20),
 	first_name VARCHAR(50) NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE Person (
 	CONSTRAINT id_length CHECK(person_ID BETWEEN 1 AND 9999)
 );
 
-CREATE TABLE Employee (
+CREATE TABLE Employee ( -- creates table employee, subclass of person.
 	employee_number INT PRIMARY KEY,
 	Salary INT NOT NULL,
 	CONSTRAINT limit_employee_number CHECK(employee_number BETWEEN 1 AND 9999),
@@ -68,20 +68,20 @@ CREATE TABLE Employee (
 	FOREIGN KEY (employee_number) REFERENCES Person(person_ID)
 );
 
-CREATE TABLE Employee_Dependent (
+CREATE TABLE Employee_Dependent ( --creates employee_dependent, weak entity set containing the dependent multivalued attribute from employee.
 	employee_number INT NOT NULL,
 	dependent_name VARCHAR(100) NOT NULL,
 	PRIMARY KEY (employee_number, dependent_name),
 	FOREIGN KEY (employee_number) REFERENCES Employee
 );
 
-CREATE TABLE Customer (
+CREATE TABLE Customer ( --creates customer entity, subclass of person
 	customer_ID INT PRIMARY KEY,
 	passport_number VARCHAR(16),
 	FOREIGN KEY (customer_ID) REFERENCES Person(person_ID)
 );
 
-CREATE TABLE Pilot (	
+CREATE TABLE Pilot (	--creates pilot entity, subclass of employee.
 	pilot_license_number VARCHAR(16) PRIMARY KEY,
 	employee_number INT NOT NULL,
 	FOREIGN KEY (employee_number) REFERENCES Employee
@@ -97,7 +97,7 @@ CREATE TABLE Departure ( --creates Departure entity a weak entity set
 	FOREIGN KEY (serial_number, model_number) REFERENCES Aircraft,
 );
 
-CREATE TABLE Can_Fly (
+CREATE TABLE Can_Fly ( --creates can_fly relationship table between pilot and plane.
 	pilot_license_number VARCHAR(16),
 	model_number VARCHAR(16),
 	PRIMARY KEY (pilot_license_number, model_number),
@@ -105,7 +105,7 @@ CREATE TABLE Can_Fly (
 	FOREIGN KEY (model_number) REFERENCES Plane
 );
 
-CREATE TABLE Assigned_To(
+CREATE TABLE Assigned_To( -- creates relationship table assigned_to between employee and departure.
 	employee_number INT,
 	departure_date VARCHAR(30),	
 	flight_number INT,
@@ -115,7 +115,7 @@ CREATE TABLE Assigned_To(
 	FOREIGN KEY (departure_date, flight_number, serial_number) REFERENCES Departure
 );
 
-CREATE TABLE Ticket (
+CREATE TABLE Ticket ( --EXTENDED REQUIREMENT ENTITY, creates a strong entity, ticket, with relationships with customer and departure.
   ticket_number INT PRIMARY KEY,
   ticket_class VARCHAR(20) NOT NULL,
   boarding_section CHAR(1) NOT NULL,
