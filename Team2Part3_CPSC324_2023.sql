@@ -130,6 +130,70 @@ CREATE TABLE pilot_plane(
 	FOREIGN KEY (model_number) REFERENCES plane
 );
 
+--Insertion of person data
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (1, 'Sally', 'Bay', 'Clark', '223', 'Easy St', 'Langley', 'British Columbia', 'Canada', '+1 801-193-2320')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (2, 'Jon', 'Beck', 'Edwards', '567', 'Spruce St', 'Merrit', 'British Columbia', 'Canada', '+1 801-228-6729')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (3, 'Alice', NULL, 'Gates', '285', 'Kapok St', 'New Westminster', 'British Columbia', 'Canada', '+1 801-493-2203')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (4, 'Eve', 'Birch', 'Green', '435', 'Alder St', 'North Vancouver', 'British Columbia', 'Canada', '+1 801-933-2320')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (5, 'Mallory', 'Blue', 'Hooper', '456', 'Maple St', 'Vernon', 'British Columbia', 'Canada', '+1 313-912-2101')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (6, 'Jim', 'Bree', 'Jones', '234', 'Oak St', 'Kelowna', 'British Columbia', 'Canada', '+1 801-552-2943')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (7, 'Erin', 'Bryn', 'MacBride', '789', 'Fir St', 'Penticton', 'British Columbia', 'Canada', NULL)
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (8, 'Bobby', 'Chan', 'Majeris', '678', 'Willow St', 'Osoyoos', 'British Columbia', 'Canada', NULL)
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (9, 'Daniel', NULL, 'Peters', '345', 'Pine St', 'Langley', 'British Columbia', 'Canada', '+1 801-393-2230')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (10, 'Ashish', 'Dane', 'Phillips', '395', 'Pine St', 'Merrit', 'British Columbia', 'Canada', '+1 801-323-2320')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (11, 'Michel', 'Day', 'Rowe', '348', 'Elder St', 'New Westminster', 'British Columbia', 'Canada', '+1 801-343-2320')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (12, 'Darren', NULL, 'Smith', '123', 'Elm St', 'North Vancouver', 'British Columbia', 'Canada', '+1 801-556-2239')
+
+INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
+VALUES (13, 'Bill', 'Dot', 'Warnock', '775', 'Main St', 'Vernon', 'British Columbia', 'Canada', '+1 801-303-2222')
+
+--Insertion of employee data
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1006, 1, 150000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1005, 3, 5000000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1001, 6, 50000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1002, 9, 45000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1004, 10, 25000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1003, 11, 35000)
+
+INSERT INTO employee (employee_id, person_id, salary)
+VALUES (1007, 13, 500000)
+
 --Insertion of flight data
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
