@@ -327,3 +327,22 @@ VALUES ('80', 'A320', '1-Jul-99')
 
 INSERT INTO aircraft (serial_number, model_number, manufacture_date)
 VALUES ('93', 'B757', '12-Aug-97')
+
+-- Business Question 1
+SELECT flight_number, origin, destination, departure_time, arrival time
+FROM flight
+ORDER BY flight_number DESC;
+
+-- Business Question 2
+SELECT person.city, count(customer.person_id) as customer_amount
+FROM person JOIN customer ON person.person_id = customer.person_id
+GROUP BY person.city
+ORDER BY person.city ;
+
+-- Business Question 3 
+SELECT person.last_name, person.first_name, pilot.pilot_license_number
+FROM pilot JOIN employee ON pilot.employee_id = employee.employee_id JOIN person ON employee.person_id = person.person_id
+ORDER BY pilot.pilot_license_number DESC;
+
+--Business Question 4
+
