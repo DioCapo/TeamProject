@@ -194,6 +194,70 @@ VALUES (1003, 11, 35000)
 INSERT INTO employee (employee_id, person_id, salary)
 VALUES (1007, 13, 500000)
 
+--Insertion of employee_dependent data
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Alicia Bethea', 1006)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Breana Demars', 1007)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Brinda Estes', 1007)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Celinda Schrage', 1002)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Chadwick Squires', 1006)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Chaya Gaffney', 1004)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Deneen Nesbit', 1002)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Hettie Biles', 1002)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Lavern Ostrom', 1002)
+
+INSERT INTO employee_dependent (dependent_name, employee_id)
+VALUES ('Monte Hoard', 1006)
+
+--Insertion of customer data
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (2, 'asfd1234qwer1234')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (3, 'hjkl7698uyoi1235')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (4, '1324jhdui234bnsf')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (5, '23iusfoi234234sd')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (7, 'asdf23498dsgn235')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (9, 'sdfuap0sf823nhj2')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (10, 'safdaskjfhw3r129')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (11, 'asfdijalsdkhj213')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (12, 'asdlkfjh234iohaf')
+
+INSERT INTO customer (person_id, passport_number)
+VALUES (13, 'sadfjuoiywr12938')
+
 --Insertion of flight data
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
@@ -327,6 +391,14 @@ VALUES ('80', 'A320', '1-Jul-99')
 
 INSERT INTO aircraft (serial_number, model_number, manufacture_date)
 VALUES ('93', 'B757', '12-Aug-97')
+
+--Insertion of departure data
+
+--Insertion of customer_departure data
+
+--Insertion of employee_departure data
+
+--Insertion of pilot_plane data
 
 -------------------- START OF BUSINESS QUESTION ANSWERS --------------------------------
 
