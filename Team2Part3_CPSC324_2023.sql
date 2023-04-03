@@ -328,8 +328,10 @@ VALUES ('80', 'A320', '1-Jul-99')
 INSERT INTO aircraft (serial_number, model_number, manufacture_date)
 VALUES ('93', 'B757', '12-Aug-97')
 
+-------------------- START OF BUSINESS QUESTION ANSWERS --------------------------------
+
 -- Business Question 1
-SELECT flight_number, origin, destination, departure_time, arrival time
+SELECT flight_number, origin, destination, departure_time, arrival_time
 FROM flight
 ORDER BY flight_number DESC;
 
