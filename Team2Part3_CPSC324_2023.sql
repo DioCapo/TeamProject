@@ -413,12 +413,12 @@ FROM person JOIN customer ON person.person_id = customer.person_id
 GROUP BY person.city
 ORDER BY person.city ;
 
--- Business Question 3 
+-- Business Question 3 NEED TO FIX NAMES
 SELECT person.last_name, person.first_name, pilot.pilot_license_number
 FROM pilot JOIN employee ON pilot.employee_id = employee.employee_id JOIN person ON employee.person_id = person.person_id
 ORDER BY pilot.pilot_license_number DESC;
 
---Business Question 4
+--Business Question 4 NEES TO FIX NAMES
 SELECT person.last_name, person.first_name, employee.employee_id, employee.salary, count(employee_dependent.dependent_name) as dependent_count
 FROM person JOIN employee ON person.person_id = employee.person_id JOIN employee_dependent ON employee.employee_id = employee_dependent.employee_id
 GROUP BY employee.employee_id
@@ -427,12 +427,12 @@ ORDER BY person.last_name ASC, person.first_name ASC ;
 --Business Question 5
 
 
---Business Question 6
+--Business Question 6 NEED TO FIGURE OUT AGE
 SELECT plane.manufacturer, plane.model_number, aircraft.serial_number, [AGE IN DAYS HERE]
 FROM plane JOIN aircraft ON plane.model_number = aircraft.model_number
 ORDER BY [AGE IN DAYS HERE] DESC
 
---Business Question 7
+--Business Question 7 NEED TO FIX NAMES AND ADD ZEROS
 SELECT person.last_name, person.first_name, customer.passport_number, count(departure_date,serial_number,model_number,flight_number) AS departures_taken
 FROM person JOIN customer ON person.person_id = customer.person_id JOIN customer_departure ON customer.person_id = customer_departure.person_id
 GROUP BY person.last_name, person.first_name
