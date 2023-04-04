@@ -394,6 +394,45 @@ VALUES ('93', 'B757', '12-Aug-97')
 
 --Insertion of departure data
 
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '11', 'B727', 100)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '21', 'DC10', 112)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '11', 'B727', 206)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '80', 'A320', 334)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '80', 'A320', 395)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('1-Nov', '22', 'B757', 991)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '11', 'B727', 100)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '11', 'B727', 112)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '13', 'B727', 206)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '22', 'B757', 334)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '70', 'A310', 335)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '24', 'DC9', 337)
+
+INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
+VALUES ('31-Oct', '22', 'B757', 449)
+
 --Insertion of customer_departure data
 
 --Insertion of employee_departure data
@@ -405,7 +444,7 @@ VALUES ('93', 'B757', '12-Aug-97')
 -- Business Question 1
 SELECT flight_number, origin, destination, departure_time, arrival_time
 FROM flight
-ORDER BY flight_number DESC ;
+ORDER BY flight_number DESC;
 
 -- Business Question 2
 SELECT person.city, count(customer.person_id) as customer_amount
@@ -424,59 +463,18 @@ FROM person JOIN employee ON person.person_id = employee.person_id JOIN employee
 GROUP BY employee.employee_id
 ORDER BY full_name ASC ;
 
---Business Question 5
-WITH has_aircraft(manufacturer, model_number, aircraft_count) AS (
+--Business Question 5 NEED TO ADD ZEROS
 SELECT plane.manufacturer, plane.model_number, count(aircraft.serial_number) AS aircraft_count
 FROM plane JOIN aircraft ON plane.model_number = aircraft.model_number
 GROUP BY plane.model_number
-),
 
-no_aircraft(manufacturer, model_number) AS (
-SELECT manufacturer, model_number
-FROM plane
 
-EXCEPT
-
-SELECT manufacturer, model_number
-FROM has_aircraft
-)
-
-SELECT manufacturer, model_number, aircraft_count = '0'
-FROM no_aircraft
-
-UNION 
-
-SELECT *
-FROM has_aircraft
-;
-
---Business Question 6
-SELECT plane.manufacturer, plane.model_number, aircraft.serial_number, DATEDIFF(DD, aircraft.manufacture_date, GETDATE()) AS Age_in_Days
+--Business Question 6 NEED TO FIGURE OUT AGE
+SELECT plane.manufacturer, plane.model_number, aircraft.serial_number, [AGE IN DAYS HERE]
 FROM plane JOIN aircraft ON plane.model_number = aircraft.model_number
-ORDER BY Age_in_Days DESC ;
+ORDER BY [AGE IN DAYS HERE] DESC
 
---Business Question 7
-WITH has_flown(full_name, passport_number, departures_taken) AS (
-SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number, count(*) AS departures_taken
+--Business Question 7 NEED TO ADD ZEROS
+SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number, count(departure_date,serial_number,model_number,flight_number) AS departures_taken
 FROM person JOIN customer ON person.person_id = customer.person_id JOIN customer_departure ON customer.person_id = customer_departure.person_id
-GROUP BY passport_number
-),
-
-has_not_flown(full_name, passport_number) AS (
-SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number
-FROM person JOIN customer ON person.person_id = customer.person_id
-
-EXCEPT
-
-SELECT full_name, passport_number
-FROM has_flown
-)
-
-SELECT full_name, passport_number, departures_taken = '0'
-FROM has_not_flown
-
-UNION
-
-SELECT *
-FROM has_flown
-;
+GROUP BY full_name
