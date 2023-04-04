@@ -473,7 +473,76 @@ VALUES (13, '31-Oct', '22', 'B757', 449)
 
 --Insertion of employee_departure data
 
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1001, '1-Nov', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1001, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1002, '1-Nov', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1002, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1003, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1003, '31-Oct', '24', 'DC9', 337)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1004, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1004, '31-Oct', '24', 'DC9', 337)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1005, '31-Oct', '24', 'DC9', 337)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1006, '1-Nov', '22', 'B757', 991)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1006, '31-Oct', '24', 'DC9', 337)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1007, '1-Nov', '11', 'B727', 100)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1007, '1-Nov', '22', 'B757', 991)
+
+INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1007, '31-Oct', '13', 'B727', 206)
+
 --Insertion of pilot_plane data
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1001, 'B727')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1001, 'B747')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1001, 'DC10')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1002, 'A320')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1002, 'A340')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1002, 'B757')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1002, 'DC9')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1003, 'A310')
+
+INSERT INTO pilot_plane (employee_id, model_number)
+VALUES (1003, 'DC9')
 
 -------------------- START OF BUSINESS QUESTION ANSWERS --------------------------------
 
@@ -555,3 +624,9 @@ UNION
 SELECT *
 FROM has_flown
 ;
+
+--Business question 8
+
+--Business question 9
+
+--Business question 10
