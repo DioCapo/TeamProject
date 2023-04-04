@@ -1,19 +1,19 @@
 USE Team2_Part3_2023;
 -----------------Drop any tables that will be created, preserving referential integrity ----------
-DROP TABLE customer_departure;
-DROP TABLE employee_departure;
-DROP TABLE pilot_plane;
-DROP TABLE departure;
+DROP TABLE IF EXISTS customer_departure;
+DROP TABLE IF EXISTS employee_departure;
+DROP TABLE IF EXISTS pilot_plane;
+DROP TABLE IF EXISTS departure;
 
-DROP TABLE aircraft;
-DROP TABLE employee_dependent;
+DROP TABLE IF EXISTS aircraft;
+DROP TABLE IF EXISTS employee_dependent;
 
-DROP TABLE flight;
-DROP TABLE plane;
-DROP TABLE pilot;
-DROP TABLE employee;
-DROP TABLE customer;
-DROP TABLE person;
+DROP TABLE IF EXISTS flight;
+DROP TABLE IF EXISTS plane;
+DROP TABLE IF EXISTS pilot;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS person;
 
 -----------------Create strong entity sets--------------------------------
 CREATE TABLE flight(
@@ -90,7 +90,7 @@ CREATE TABLE aircraft (
 );
 
 CREATE TABLE departure (		
-	departure_date	date,
+	departure_date	varchar(30),
 	serial_number	varchar(16),
 	model_number	varchar(16),
 	flight_number	int,
@@ -102,7 +102,7 @@ CREATE TABLE departure (
 ------------------------------Create Relationship Sets------------------
 CREATE TABLE customer_departure(
 	person_id		int,
-	departure_date	date,
+	departure_date	varchar(30),
 	serial_number	varchar(16),
 	model_number	varchar(16),
 	flight_number	int,
@@ -113,7 +113,7 @@ CREATE TABLE customer_departure(
 
 CREATE TABLE employee_departure(
 	employee_id	int,
-	departure_date	date,
+	departure_date	varchar(30),
 	serial_number	varchar(16),
 	model_number	varchar(16),
 	flight_number	int,
@@ -261,16 +261,16 @@ VALUES (13, 'sadfjuoiywr12938')
 --Insertion of flight data
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (100, 'SLC', 'BOS', '8:00', '17:50')
+VALUES (100, 'SLC', 'BOS', ' 8:00', '17:50')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
 VALUES (112, 'DCA', 'DEN', '14:00', '18:07')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (121, 'STL', 'SLC', '7:00', '9:13')
+VALUES (121, 'STL', 'SLC', ' 7:00', ' 9:13')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (122, 'STL', 'YYV', '8:30', '10:19')
+VALUES (122, 'STL', 'YYV', ' 8:30', '10:19')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
 VALUES (206, 'DFW', 'STL', '21:00', '23:43')
@@ -294,7 +294,7 @@ INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_
 VALUES (394, 'DFW', 'MIA', '19:00', '21:30')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (395, 'MIA', 'DFW', '9:00', '11:40')
+VALUES (395, 'MIA', 'DFW', ' 9:00', '11:40')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
 VALUES (449, 'CDG', 'DEN', '10:00', '19:29')
@@ -473,46 +473,46 @@ VALUES (13, '31-Oct', '22', 'B757', 449)
 
 --Insertion of employee_departure data
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1001, '1-Nov', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1001, '31-Oct', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1002, '1-Nov', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1002, '31-Oct', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1003, '31-Oct', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1003, '31-Oct', '24', 'DC9', 337)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1004, '31-Oct', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1004, '31-Oct', '24', 'DC9', 337)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1005, '31-Oct', '24', 'DC9', 337)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1006, '1-Nov', '22', 'B757', 991)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1006, '31-Oct', '24', 'DC9', 337)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1007, '1-Nov', '11', 'B727', 100)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1007, '1-Nov', '22', 'B757', 991)
 
-INSERT INTO customer_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
 VALUES (1007, '31-Oct', '13', 'B727', 206)
 
 --Insertion of pilot_plane data
@@ -560,19 +560,20 @@ ORDER BY person.city ;
 -- Business Question 3
 SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, pilot.pilot_license_number
 FROM pilot JOIN employee ON pilot.employee_id = employee.employee_id JOIN person ON employee.person_id = person.person_id
+GROUP BY person.last_name, person.first_name, pilot.pilot_license_number
 ORDER BY pilot.pilot_license_number DESC;
 
 --Business Question 4
 SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, employee.employee_id, employee.salary, count(employee_dependent.dependent_name) as dependent_count
 FROM person JOIN employee ON person.person_id = employee.person_id JOIN employee_dependent ON employee.employee_id = employee_dependent.employee_id
-GROUP BY employee.employee_id
+GROUP BY employee.employee_id, person.last_name, person.first_name, employee.salary
 ORDER BY full_name ASC ;
 
 --Business Question 5
 WITH has_aircraft(manufacturer, model_number, aircraft_count) AS (
 SELECT plane.manufacturer, plane.model_number, count(aircraft.serial_number) AS aircraft_count
 FROM plane JOIN aircraft ON plane.model_number = aircraft.model_number
-GROUP BY plane.model_number
+GROUP BY plane.model_number, plane.manufacturer
 ),
 
 no_aircraft(manufacturer, model_number) AS (
@@ -603,7 +604,7 @@ ORDER BY Age_in_Days DESC ;
 WITH has_flown(full_name, passport_number, departures_taken) AS (
 SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number, count(*) AS departures_taken
 FROM person JOIN customer ON person.person_id = customer.person_id JOIN customer_departure ON customer.person_id = customer_departure.person_id
-GROUP BY passport_number
+GROUP BY passport_number, person.last_name, person.first_name
 ),
 
 has_not_flown(full_name, passport_number) AS (
@@ -626,7 +627,10 @@ FROM has_flown
 ;
 
 --Business question 8
-
+SELECT *
+FROM departure, flight
+WHERE departure.flight_number = flight.flight_number;
 --Business question 9
 
 --Business question 10
+
