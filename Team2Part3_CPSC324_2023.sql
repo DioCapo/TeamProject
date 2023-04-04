@@ -419,7 +419,7 @@ FROM pilot JOIN employee ON pilot.employee_id = employee.employee_id JOIN person
 ORDER BY pilot.pilot_license_number DESC;
 
 --Business Question 4
-SELECT CONCAT(person.last_name, ', ' person.first_name) AS full_name, employee.employee_id, employee.salary, count(employee_dependent.dependent_name) as dependent_count
+SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, employee.employee_id, employee.salary, count(employee_dependent.dependent_name) as dependent_count
 FROM person JOIN employee ON person.person_id = employee.person_id JOIN employee_dependent ON employee.employee_id = employee_dependent.employee_id
 GROUP BY employee.employee_id
 ORDER BY full_name ASC ;
@@ -436,6 +436,6 @@ FROM plane JOIN aircraft ON plane.model_number = aircraft.model_number
 ORDER BY [AGE IN DAYS HERE] DESC
 
 --Business Question 7 NEED TO ADD ZEROS
-SELECT CONCAT(person.last_name, ', ' person.first_name) AS full_name, customer.passport_number, count(departure_date,serial_number,model_number,flight_number) AS departures_taken
+SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number, count(departure_date,serial_number,model_number,flight_number) AS departures_taken
 FROM person JOIN customer ON person.person_id = customer.person_id JOIN customer_departure ON customer.person_id = customer_departure.person_id
 GROUP BY person.last_name, person.first_name
