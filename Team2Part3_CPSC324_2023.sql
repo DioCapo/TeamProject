@@ -438,4 +438,4 @@ ORDER BY [AGE IN DAYS HERE] DESC
 --Business Question 7 NEED TO ADD ZEROS
 SELECT CONCAT(person.last_name, ', ', person.first_name) AS full_name, customer.passport_number, count(departure_date,serial_number,model_number,flight_number) AS departures_taken
 FROM person JOIN customer ON person.person_id = customer.person_id JOIN customer_departure ON customer.person_id = customer_departure.person_id
-GROUP BY person.last_name, person.first_name
+GROUP BY full_name
