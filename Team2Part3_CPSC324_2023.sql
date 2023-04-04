@@ -435,6 +435,42 @@ VALUES ('31-Oct', '22', 'B757', 449)
 
 --Insertion of customer_departure data
 
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (2, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (2, '31-Oct', '22', 'B757', 449)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (3, '1-Nov', '22', 'B757', 991)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (3, '31-Oct', '13', 'B727', 206)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (3, '31-Oct', '22', 'B757', 334)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (7, '1-Nov', '22', 'B757', 991)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (9, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (10, '31-Oct', '22', 'B757', 449)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (11, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (12, '1-Nov', '22', 'B757', 991)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (12, '31-Oct', '11', 'B727', 100)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (13, '31-Oct', '22', 'B757', 449)
+
 --Insertion of employee_departure data
 
 --Insertion of pilot_plane data
