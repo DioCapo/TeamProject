@@ -627,13 +627,65 @@ FROM has_flown
 ;
 
 --Business question 8
-SELECT *
-FROM departure, flight
-WHERE departure.flight_number = flight.flight_number;
+--This question had two most popular destinations so I accounted for them both
+
+WITH count_destinations(destination, flight_count) AS (
+SELECT f.destination, COUNT(f.destination) AS dest_count
+FROM departure AS d, flight AS f
+WHERE d.flight_number = f.flight_number
+GROUP BY f.destination
+),
+highest_dest_count(high_count) AS (
+SELECT MAX(flight_count)
+FROM count_destinations
+),
+most_common_dest(common_dest) AS (
+SELECT cd.destination
+FROM count_destinations AS cd, highest_dest_count AS hdc
+WHERE flight_count = high_count
+)
+SELECT p.city, f.origin, f.destination, COUNT(f.origin) AS origin_count
+FROM person AS p, customer AS c, customer_departure AS cd, flight AS f, most_common_dest AS mcd
+WHERE mcd.common_dest = f.destination
+	AND cd.flight_number = f.flight_number
+	AND c.person_id = cd.person_id
+	AND p.person_id = c.person_id
+GROUP BY f.origin, p.city, f.destination
+ORDER BY f.destination;
+
 --Business question 9
 
+WITH cust_cities_join(city, origin) AS (
+SELECT p.city, f.origin
+FROM person AS p, customer AS c, customer_departure AS cd, flight AS f
+WHERE cd.flight_number = f.flight_number 
+	AND c.person_id = cd.person_id 
+	AND p.person_id = c.person_id
+),
+cust_cities_count(city, city_count) AS (
+SELECT ccj.city, COUNT(ccj.city)
+FROM cust_cities_join AS ccj
+GROUP BY ccj.city
+),
+highest_c_count(h_count) AS (
+SELECT MAX(ccc.city_count)
+FROM cust_cities_count AS ccc
+),
+most_popular_city(most_pop_city) AS (
+SELECT ccc.city
+FROM highest_c_count AS hcc, cust_cities_count AS ccc
+WHERE hcc.h_count = ccc.city_count
+GROUP BY ccc.city
+)
+SELECT mpc.most_pop_city, ccj.origin, COUNT(ccj.origin) AS origin_count
+FROM most_popular_city AS mpc, cust_cities_join AS ccj
+WHERE mpc.most_pop_city = ccj.city
+GROUP BY mpc.most_pop_city, ccj.origin;
+
 --Business question 10
+
 -- determine all flights going to STL
+
 WITH to_STL AS (
 SELECT origin, destination, flight_number
 FROM flight
@@ -641,6 +693,7 @@ WHERE destination = 'STL'
 ),
 
 -- determine all flights from MIA
+
 from_MIA AS (
 SELECT origin, destination, flight_number
 FROM flight
@@ -648,12 +701,15 @@ WHERE origin = 'MIA'
 ),
 
 -- find all flights that connect from MIA to STL
+
 connections(origin, first_flight_number, connection, second_flight_number, destination) AS (
 SELECT from_MIA.origin, from_MIA.flight_number, from_MIA.destination, flight.flight_number, to_STL.destination
 FROM flight, from_MIA, to_STL
 WHERE flight.origin = from_MIA.destination AND flight.destination = to_STL.destination
 )
+
 -- output the answer
+
 SELECT *
 FROM connections
 
