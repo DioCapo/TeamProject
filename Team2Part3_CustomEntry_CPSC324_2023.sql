@@ -71,6 +71,14 @@ VALUES (17, '14-Feb', '111', 'A10', 912)
 INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
 VALUES (14, '14-Feb', '111', 'A10', 912)
 
+--Insertion of employee_departure data
+
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1009, '14-Feb', '111', 'A10', 912)
+
+INSERT INTO employee_departure (employee_id, departure_date, serial_number, model_number, flight_number)
+VALUES (1008, '14-Feb', '111', 'A10', 912)
+
 --Insertion of pilot_plane data
 
 INSERT INTO pilot_plane (employee_id, model_number)
