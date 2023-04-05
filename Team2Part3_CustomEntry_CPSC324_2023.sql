@@ -1,4 +1,4 @@
-
+USE Team2_Part3_2023;
 --Insertion of person data
 
 INSERT INTO person (person_id, first_name, middle_name, last_name, street_number, street_name, city, province_state, country, primary_phone)
@@ -35,39 +35,43 @@ INSERT INTO customer (person_id, passport_number)
 VALUES (14, 'hjk33398uyoi1235')
 
 --Insertion of flight data
+-- Just double check yvy yxs doesnt exist
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (100, 'SLC', 'BOS', ' 8:00', '17:50')
+VALUES (256, 'YVR', 'YXS', ' 8:00', '8:40')
 
 INSERT INTO flight (flight_number, origin, destination, departure_time, arrival_time)
-VALUES (112, 'DCA', 'DEN', '14:00', '18:07')
+VALUES (912, 'YXS', 'AMS', '14:00', '2:00')
 
 --Insertion of pilot data
 
 INSERT INTO pilot (employee_id, pilot_license_number)
-VALUES (1001, 'a8asdf8asdf8as8f')
+VALUES (1009, 'a8asdf0asdf8as8f')
 
 --Insertion of plane data
 
 INSERT INTO plane (model_number, manufacturer)
-VALUES ('A310', 'Airbus')
+VALUES ('A10', 'Fairchild Republic')
 
 --Insertion of aircraft data
 
 INSERT INTO aircraft (serial_number, model_number, manufacture_date)
-VALUES ('10', 'B747', '5-Jan-05')
+VALUES ('111', 'A10', '5-Jan-93')
 
 --Insertion of departure data
 
 INSERT INTO departure (departure_date, serial_number, model_number, flight_number)
-VALUES ('1-Nov', '11', 'B727', 100)
+VALUES ('14-Feb', '111', 'A10', 912)
 
 --Insertion of customer_departure data
 
 INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
-VALUES (2, '31-Oct', '11', 'B727', 100)
+VALUES (17, '14-Feb', '111', 'A10', 912)
+
+INSERT INTO customer_departure (person_id, departure_date, serial_number, model_number, flight_number)
+VALUES (14, '14-Feb', '111', 'A10', 912)
 
 --Insertion of pilot_plane data
 
 INSERT INTO pilot_plane (employee_id, model_number)
-VALUES (1001, 'B727')
+VALUES (1009, 'A10')
