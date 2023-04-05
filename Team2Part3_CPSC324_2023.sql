@@ -633,4 +633,33 @@ WHERE departure.flight_number = flight.flight_number;
 --Business question 9
 
 --Business question 10
+-- determine all flights going to STL
+WITH to_STL AS (
+SELECT origin, destination, flight_number
+FROM flight
+WHERE destination = 'STL' 
+),
 
+-- determine all flights from MIA
+from_MIA AS (
+SELECT origin, destination, flight_number
+FROM flight
+WHERE origin = 'MIA'
+),
+
+-- find all flights that connect from MIA to STL
+connections(origin, first_flight_number, connection, second_flight_number, destination) AS (
+SELECT from_MIA.origin, from_MIA.flight_number, from_MIA.destination, flight.flight_number, to_STL.destination
+FROM flight, from_MIA, to_STL
+WHERE flight.origin = from_MIA.destination AND flight.destination = to_STL.destination
+)
+-- output the answer
+SELECT *
+FROM connections
+
+UNION
+
+SELECT origin, flight_number AS first_flight_number, connection = NULL, second_flight_number = NULL, destination
+FROM flight
+WHERE origin = 'MIA' AND destination = 'STL' 
+;
